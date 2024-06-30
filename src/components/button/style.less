@@ -1,0 +1,111 @@
+
+// 按钮
+// 按钮基本属性
+@btn-font-weight:             400;
+@btn-padding-y:               .5rem;
+@btn-padding-x:               .9375rem;
+@btn-font-size:               @font-size-base;
+
+//不同大小按钮的 padding 和 font size
+@btn-padding-y-sm:            .375rem;
+@btn-padding-x-sm:            .5rem;
+@btn-font-size-sm:            @font-size-sm;
+
+@btn-padding-y-lg:            .625rem;
+@btn-padding-x-lg:            1.125rem;
+@btn-font-size-lg:            @font-size-lg;
+
+
+// 按钮其他
+@btn-box-shadow:              inset 0 0 0 rgba(@white, .15), 1px 2px 1px rgba(@black, .075);
+@btn-disabled-opacity:        .5;
+
+
+// 按钮 radius
+@btn-border-radius:           @border-radius;
+@btn-border-radius-lg:        @border-radius-lg;
+@btn-border-radius-sm:        @border-radius-sm;
+
+@btn-transition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+
+.btn-type(
+  @bg-color;
+  @color;
+  @border-color;
+) {
+  background-color: @bg-color;
+  color: @color;
+  border: 1px solid @border-color;
+  &:hover {
+    background-color: lighten(@bg-color, 7.5%);
+    color: lighten(@color, 7.5%);
+  }
+  &:active {
+    background-color: darken(@bg-color, 10%);
+    color: darken(@color, 10%);
+  }
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: @btn-disabled-opacity;
+    > * {
+      pointer-events: none;
+    }
+    &:hover {
+      color: @color;
+      background-color: @bg-color;
+    }
+  }
+}
+
+.btn-size (@font-size; @padding-y; @padding-x) {
+  font-size: @font-size;
+  padding: @padding-y @padding-x;
+}
+
+.uni-btn {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  box-shadow: @btn-box-shadow;
+  background-color: @body-bg;
+  outline: none;
+  border: none;
+  padding: @btn-padding-y @btn-padding-x;
+  cursor: pointer;
+  border-radius: @btn-border-radius;
+  transition: @btn-transition;
+  border: 1px solid transparent;
+  &-primary {
+    .btn-type(@primary, @body-bg, @primary);
+  }
+  &-danger {
+    .btn-type(@danger, @body-bg, @danger);
+  }
+  &-default {
+    .btn-type(@body-bg, @gray-900, @border-color);
+    &:not([disabled]) {
+      &:hover {
+        color: @primary;
+        border: 1px solid @primary;
+      }
+      &:active {
+        border-color: darken(@primary, 10%);
+        color: darken(@primary, 10%);
+        background-color: @body-bg;
+      }
+    }
+
+  }
+  &-large {
+    .btn-size(@btn-font-size-lg, @btn-padding-y-lg, @btn-padding-x-lg);
+  }
+  &-small {
+    .btn-size(@btn-font-size-sm, @btn-padding-y-sm, @btn-padding-x-sm);
+  }
+  &-link {
+    .btn-type(transparent, @primary, transparent);
+    box-shadow: none;
+  }
+}
