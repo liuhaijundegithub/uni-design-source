@@ -1,0 +1,40 @@
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@margin-values: range(1px, 100px);
+each(@margin-values, {
+  .ml-@{index} {
+    margin-left: @value;
+  }
+  .mr-@{index} {
+    margin-right: @value;
+  }
+  .mb-@{index} {
+    margin-bottom: @value;
+  }
+  .mt-@{index} {
+    margin-top: @value;
+  }
+})
+
+@padding-values: range(1px, 100px);
+each(@margin-values, {
+  .pl-@{index} {
+    padding-left: @value;
+  }
+  .pr-@{index} {
+    padding-right: @value;
+  }
+  .pb-@{index} {
+    padding-bottom: @value;
+  }
+  .pt-@{index} {
+    padding-top: @value;
+  }
+})
